@@ -37,7 +37,7 @@ function App() {
   }, []);
 
   const share = async (network) => {
-    const text = `Athira & Abhinandh are getting married on 20 December 2026 at ${VENUE}. ${window.location.href}`;
+    const text = `ॐ A ♥ A are getting married on 20 December 2026 at ${VENUE}. ${window.location.href}`;
     const urls = {
       whatsapp: `https://wa.me/?text=${encodeURIComponent(text)}`,
       facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`,
@@ -72,7 +72,7 @@ function App() {
     <div className="reference-site">
       <div className="falling-flowers" aria-hidden="true"><span>❧</span><span>❧</span><span>❧</span><span>❧</span><span>❧</span><span>❧</span><span>❧</span><span>❧</span><span>❧</span><span>❧</span><span>❧</span><span>❧</span></div>
       <nav className="navbar">
-        <a className="logo" href="#top">A <span>♡</span> A</a>
+        <a className="logo" href="#top">ॐ A ♥ A</a>
         <button className="menu-toggle" onClick={() => setMenuOpen((value) => !value)} aria-label="Toggle menu">{menuOpen ? "×" : "☰"}</button>
         <div className={`menu-links ${menuOpen ? "is-open" : ""}`}><a href="#countdown" onClick={() => setMenuOpen(false)}>Countdown</a><a href="#couple" onClick={() => setMenuOpen(false)}>Couple</a><a href="#event" onClick={() => setMenuOpen(false)}>Event</a><a href="#schedule" onClick={() => setMenuOpen(false)}>Schedule</a><a href="#qr" onClick={() => setMenuOpen(false)}>QR Code</a><a href="#share" onClick={() => setMenuOpen(false)}>Share</a></div>
       </nav>
@@ -83,7 +83,7 @@ function App() {
           <div className="hero-copy">
             <div className="hero-names"><h1><strong><em>Abhinandh</em></strong></h1><span>♡</span><h1><strong><em>Athira</em></strong></h1></div>
             <p className="hero-lede">Together with their families, they invite you to share in the joy of their wedding day.</p>
-            <div className="hero-actions"><button onClick={() => setInvitationOpen(true)}>Open the Invitation</button><a href={MAP_URL} target="_blank" rel="noreferrer">⌖ &nbsp; Find the Venue</a></div>
+            <div className="hero-actions"><button onClick={() => setInvitationOpen(true)}>Open the Invitation</button><button className="find-venue-button" onClick={() => window.open(MAP_URL, "_blank", "noopener,noreferrer")}>⌖ &nbsp; Find the Venue</button></div>
             <div className="hero-meta"><p>20 December 2026</p><p>{VENUE}</p></div>
           </div>
           <a className="scroll-cue" href="#countdown"><span>Scroll</span><b>↓</b></a>
