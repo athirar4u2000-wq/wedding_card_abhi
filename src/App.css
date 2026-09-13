@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Allura:wght@400&family=Cormorant+Garamond:wght@500;600;700&display=swap");
-:root { color-scheme: light; --ink:#26483c; --muted:#708278; --cream:#ffffff; --paper:#ffffff; --sage:#f7f8f2; --gold:#c7a32b; --line:#d8dfd3; --navy:#0b1f3a; --formal-script:"Allura","Segoe Script","Lucida Handwriting",cursive; --print-heading:"Cormorant Garamond","Playfair Display",serif; font-family:"DM Sans",sans-serif; }
+:root { color-scheme: only light; --ink:#26483c; --muted:#708278; --cream:#ffffff; --paper:#ffffff; --sage:#f7f8f2; --gold:#c7a32b; --line:#d8dfd3; --navy:#0b1f3a; --formal-script:"Allura","Segoe Script","Lucida Handwriting",cursive; --print-heading:"Cormorant Garamond","Playfair Display",serif; font-family:"DM Sans",sans-serif; }
 * { box-sizing:border-box; margin:0; } html { scroll-behavior:smooth; } body { background:#ffffff; color:var(--ink); font-family:"DM Sans",sans-serif; } button,a { font:inherit; } button { cursor:pointer; }
 .reference-site { min-height:100vh; overflow:hidden; background:#ffffff; transition:background .3s,color .3s; }
 .navbar { position:fixed; z-index:10; top:0; left:0; right:0; height:76px; display:flex; align-items:center; justify-content:space-between; padding:0 6%; background:transparent; box-shadow:none; backdrop-filter:none; }.logo { color:white; text-decoration:none; font:600 25px "Playfair Display",serif; }.logo span { color:inherit; }.menu-toggle { margin-right:38px; color:white; background:transparent; border:0; font-size:24px; }.menu-links { position:absolute; top:68px; right:6%; display:grid; gap:14px; padding:20px 24px; background:var(--paper); box-shadow:0 15px 40px #183c2c22; }.menu-links a { color:var(--ink); text-decoration:none; font-size:12px; letter-spacing:1.4px; text-transform:uppercase; transition:color .2s; }.menu-links a:hover { color:var(--gold); }
@@ -221,44 +221,409 @@
 .event-panel .event-list { grid-template-columns:1fr; padding:0; }
 .event-panel iframe { display:block; width:100%; min-height:360px; border:0; border-radius:22px; filter:saturate(.75); }
 @media (max-width:700px) { .event-panel { grid-template-columns:1fr; padding:0; }.event-panel iframe { min-height:250px; order:2; } }
-.menu-toggle { display:none; }
-.navbar .menu-links { position:static; display:flex; align-items:center; gap:22px; padding:0; background:transparent; box-shadow:none; }
-.navbar .menu-links a { color:#fff; white-space:nowrap; }
-@media (max-width:700px) { .menu-toggle { display:block; }.navbar .menu-links { position:absolute; top:68px; right:5%; display:none; gap:14px; padding:20px 24px; background:var(--paper); box-shadow:0 15px 40px #183c2c22; }.navbar .menu-links.is-open { display:grid; }.navbar .menu-links a { color:var(--ink); } }
+/* Navbar layout & styling */
+.navbar {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6%;
+  background: var(--navy) !important;
+  background-color: var(--navy) !important;
+  box-shadow: 0 4px 20px rgba(11, 31, 58, 0.28) !important;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.22);
+}
+
+.logo {
+  color: #ffffff !important;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  line-height: 1;
+}
+
+.logo-initial {
+  color: #ffffff !important;
+  font-family: "Playfair Display", serif !important;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+}
+
+.logo-heart,
+.logo span:not(.logo-initial) {
+  color: var(--gold) !important;
+  font-size: 19px;
+  line-height: 1;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-style: normal;
+  font-weight: 400;
+  transform-origin: center center;
+  animation: heartPulse 1.8s ease-in-out infinite;
+  position: relative;
+  top: -1px;
+}
+
+.menu-toggle {
+  display: none;
+}
+
+.navbar .menu-links {
+  position: static;
+  display: flex !important;
+  align-items: center;
+  gap: 20px;
+  padding: 0 !important;
+  margin: 0;
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.navbar .menu-links a {
+  color: #ffffff !important;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding: 6px 12px;
+  border-radius: 999px;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.navbar .menu-links a:hover {
+  color: var(--gold) !important;
+  background-color: rgba(212, 175, 55, 0.12) !important;
+}
+
+.menu-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 700px) {
+  .navbar {
+    padding: 0 5%;
+    height: 66px;
+  }
+
+  .menu-toggle {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    margin: 0 !important;
+    padding: 0;
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(212, 175, 55, 0.4) !important;
+    border-radius: 8px;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .menu-toggle:hover,
+  .menu-toggle:active {
+    background-color: rgba(212, 175, 55, 0.18) !important;
+    color: var(--gold) !important;
+  }
+
+  .navbar .menu-links {
+    position: absolute !important;
+    top: 70px !important;
+    right: 5% !important;
+    left: auto !important;
+    width: min(260px, calc(100vw - 32px)) !important;
+    display: none !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+    padding: 16px 14px !important;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    border: 1px solid rgba(212, 175, 55, 0.35) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 16px 40px rgba(11, 31, 58, 0.25) !important;
+    z-index: 120;
+  }
+
+  .navbar .menu-links.is-open {
+    display: flex !important;
+    animation: menuFadeIn 0.2s ease-out;
+  }
+
+  .navbar .menu-links a {
+    color: var(--ink) !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    letter-spacing: 1.2px !important;
+    text-transform: uppercase !important;
+    padding: 10px 14px !important;
+    border-radius: 10px !important;
+    width: 100% !important;
+    text-align: left !important;
+  }
+
+  .navbar .menu-links a:hover {
+    color: var(--gold) !important;
+    background-color: rgba(212, 175, 55, 0.12) !important;
+  }
+}
+
+@keyframes menuFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .scroll-top { position:fixed; z-index:25; right:76px; bottom:20px; display:grid; width:38px; height:38px; place-items:center; border:1px solid var(--gold); border-radius:50%; color:var(--gold); background:#fff; font-size:21px; line-height:1; box-shadow:0 8px 22px #0b281d44; transition:transform .2s,background .2s; }
 .scroll-top:hover { transform:translateY(-4px); background:#fffaf0; }
 @media (max-width:700px) { .scroll-top { right:58px; bottom:18px; width:34px; height:34px; font-size:19px; } }
 
-/* Keep the invitation white regardless of the phone's dark or light theme preference. */
+/* Force all pages except Hero & Footer to be proper white regardless of phone/browser dark mode */
+:root,
+html,
+body {
+  color-scheme: only light !important;
+}
+
 body,
 .reference-site,
 .reference-section,
-.reference-section .section-intro,
+.countdown-block,
+.couple-block,
+.details-block,
+.schedule-block,
+.qr-block,
+.share-block,
+#countdown,
+#couple,
+#event,
+#schedule,
+#qr,
+#share,
+.countdown-row,
+.countdown-cell,
+.couple-cards,
+.couple-cards article,
+.event-panel,
+.event-panel > div,
+.event-list,
+.event-list > div.event-item,
+.schedule-card,
+.qr-card,
+.qr-card img,
+.qr-card a,
+.map-link,
+.invitation-modal,
+.scroll-top {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+/* Base text color for white sections */
+body,
+.reference-site,
+.reference-section,
 .reference-section h2,
+.countdown-block,
+.couple-block,
+.details-block,
+.schedule-block,
+.qr-block,
+.share-block,
+.couple-cards article,
+.couple-cards h3,
+.schedule-card,
+.schedule-card h3,
+.qr-card,
+.qr-card p,
+.event-list,
+.event-list strong,
+.event-list a,
+.map-link,
+.invitation-modal,
+.invitation-modal h2,
+.qr-card a {
+  color: var(--ink) !important;
+}
+
+.reference-section .section-intro,
+.countdown-cell span,
+.schedule-card p,
+.schedule-card small,
+.qr-card span,
+.event-list span,
+.invitation-modal p,
+.invitation-modal > button,
+.share-block blockquote {
+  color: var(--muted) !important;
+}
+
+.section-kicker,
+.countdown-cell strong,
+.couple-cards p,
+.couple-love,
+.schedule-card > span,
+.schedule-card b,
+.event-list b,
+.invitation-modal h2 i {
+  color: var(--gold) !important;
+}
+
+.countdown-cell,
+.couple-cards article,
+.event-panel,
+.event-list > div.event-item,
+.schedule-card,
+.qr-card {
+  border-color: var(--line) !important;
+  box-shadow: 0 12px 28px rgba(38, 59, 74, 0.10) !important;
+}
+
+.countdown-cell,
 .couple-cards article,
 .schedule-card,
 .qr-card,
-.event-list>div.event-item,
-.invitation-modal {
-  background: #ffffff !important;
-  color: var(--ink);
+.event-list > div.event-item {
+  border-top-color: var(--gold) !important;
 }
 
+/* Hero and Footer stay Navy Blue */
 .reference-hero,
 .hero-copy,
 .reference-footer {
   background: var(--navy) !important;
-  color: #ffffff;
+  background-color: var(--navy) !important;
+  color: #ffffff !important;
 }
 
+/* Explicit Dark Mode Overrides: Enforce proper white sections on all browsers and devices */
 @media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: light;
+  :root,
+  html,
+  body {
+    color-scheme: only light !important;
   }
+
   body,
-  .reference-site {
+  .reference-site,
+  .reference-section,
+  .countdown-block,
+  .couple-block,
+  .details-block,
+  .schedule-block,
+  .qr-block,
+  .share-block,
+  #countdown,
+  #couple,
+  #event,
+  #schedule,
+  #qr,
+  #share,
+  .countdown-row,
+  .countdown-cell,
+  .couple-cards,
+  .couple-cards article,
+  .event-panel,
+  .event-panel > div,
+  .event-list,
+  .event-list > div.event-item,
+  .schedule-card,
+  .qr-card,
+  .qr-card img,
+  .qr-card a,
+  .map-link,
+  .invitation-modal,
+  .scroll-top {
     background: #ffffff !important;
-    color: var(--ink);
+    background-color: #ffffff !important;
+    color: var(--ink) !important;
+  }
+
+  .reference-section h2,
+  .couple-cards h3,
+  .schedule-card h3,
+  .qr-card p,
+  .event-list strong,
+  .event-list a,
+  .map-link,
+  .invitation-modal h2,
+  .qr-card a {
+    color: var(--ink) !important;
+  }
+
+  .reference-section .section-intro,
+  .countdown-cell span,
+  .schedule-card p,
+  .schedule-card small,
+  .qr-card span,
+  .event-list span,
+  .invitation-modal p,
+  .invitation-modal > button,
+  .share-block blockquote {
+    color: var(--muted) !important;
+  }
+
+  .section-kicker,
+  .countdown-cell strong,
+  .couple-cards p,
+  .couple-love,
+  .schedule-card > span,
+  .schedule-card b,
+  .event-list b,
+  .invitation-modal h2 i {
+    color: var(--gold) !important;
+  }
+
+  .countdown-cell,
+  .couple-cards article,
+  .event-panel,
+  .event-list > div.event-item,
+  .schedule-card,
+  .qr-card {
+    border-color: var(--line) !important;
+  }
+
+  .countdown-cell,
+  .couple-cards article,
+  .schedule-card,
+  .qr-card,
+  .event-list > div.event-item {
+    border-top-color: var(--gold) !important;
+  }
+
+  .reference-hero,
+  .hero-copy,
+  .reference-footer {
+    background: var(--navy) !important;
+    background-color: var(--navy) !important;
+    color: #ffffff !important;
   }
 }
 
@@ -279,8 +644,7 @@ body,
 .reference-footer h2 strong,
 .invitation-modal h2 strong,
 .hero-names h1 strong,
-.couple-cards h3 strong,
-.logo span {
+.couple-cards h3 strong {
   font-family: var(--formal-script) !important;
   letter-spacing: 0.04em;
 }
@@ -420,18 +784,19 @@ body,
 
 /* Warm coastal wedding palette */
 :root {
+  color-scheme: only light;
   --ink: #263b4a;
   --muted: #766a6b;
-  --cream: #f7eee9;
-  --paper: #fffaf6;
-  --sage: #e4ece7;
+  --cream: #ffffff;
+  --paper: #ffffff;
+  --sage: #ffffff;
   --gold: #d4af37;
   --line: #e4d2cc;
   --navy: #0b1f3a;
 }
 
 body,
-.reference-site { background: var(--cream); color: var(--ink); }
+.reference-site { background: #ffffff; color: var(--ink); }
 .reference-footer { background: var(--navy); }
 .navbar,
 .reference-hero { background: var(--navy); }
@@ -541,3 +906,134 @@ body,
 .couple-cards article,
 .schedule-card,
 .event-list>div.event-item { border-top-color: #d4af37; }
+
+/* ==========================================================================
+   SHARE OUR HAPPINESS SECTION
+   ========================================================================== */
+.share-block {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  padding: 95px 6% 115px;
+  text-align: center;
+}
+
+.share-row {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 16px !important;
+  max-width: 480px !important;
+  margin: 36px auto 0 !important;
+  padding: 0 !important;
+}
+
+.share-row button {
+  width: 52px !important;
+  height: 52px !important;
+  min-width: 52px !important;
+  min-height: 52px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #ffffff !important;
+  cursor: pointer !important;
+  box-shadow: 0 8px 20px rgba(38, 59, 74, 0.16) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease !important;
+}
+
+.share-row button:hover {
+  transform: translateY(-4px) scale(1.06) !important;
+  box-shadow: 0 12px 26px rgba(38, 59, 74, 0.24) !important;
+}
+
+.share-row button:active {
+  transform: scale(0.95) !important;
+}
+
+.share-row button svg,
+.share-row button img {
+  width: 24px !important;
+  height: 24px !important;
+  display: block !important;
+  pointer-events: none !important;
+}
+
+.share-row button svg {
+  fill: none;
+  stroke: #ffffff !important;
+}
+
+.share-row button svg.icon-filled {
+  fill: #ffffff !important;
+  stroke: none !important;
+}
+
+/* Individual Brand Colors with High Specificity & !important */
+.share-row button.share-whatsapp {
+  background: #25d366 !important;
+  background-color: #25d366 !important;
+}
+
+.share-row button.share-facebook {
+  background: #1877f2 !important;
+  background-color: #1877f2 !important;
+}
+
+.share-row button.share-instagram {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important;
+  background-color: #d62976 !important;
+}
+
+.share-row button.share-telegram {
+  background: #229ed9 !important;
+  background-color: #229ed9 !important;
+}
+
+.share-row button.share-email {
+  background: #ea4335 !important;
+  background-color: #ea4335 !important;
+}
+
+.share-row button.share-copy {
+  background: #475569 !important;
+  background-color: #475569 !important;
+}
+
+.share-row button.share-copy.is-copied {
+  background: #15803d !important;
+  background-color: #15803d !important;
+}
+
+.share-row button.share-native {
+  background: var(--gold) !important;
+  background-color: var(--gold) !important;
+}
+
+.share-copied-notice {
+  display: inline-block;
+  margin-top: 22px;
+  padding: 8px 20px;
+  background: #f0fdf4 !important;
+  color: #15803d !important;
+  border: 1px solid #bbf7d0 !important;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  animation: noticeFadeIn 0.25s ease-out;
+}
+
+@keyframes noticeFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
