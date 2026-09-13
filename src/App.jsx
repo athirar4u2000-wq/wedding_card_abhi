@@ -37,7 +37,7 @@ function App() {
   }, []);
 
   const share = async (network) => {
-    const text = `Abhinandh and Athira are getting married and having a reception on 20 December 2026 4:00 PM onwards at ${VENUE}. Join us in celebrating their special day!`;
+    const text = `Abhinandh and Athira are getting married and having a reception on 20 December 2026 4:00 PM onwards at SHAMS Auditorium, Azhiyur, Kerala. Join us in celebrating their special day!`;
     const urls = {
       whatsapp: `https://wa.me/?text=${encodeURIComponent(text)}`,
       facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`,
@@ -82,7 +82,7 @@ function App() {
           <div className="hero-overlay" />
           <div className="hero-copy">
             <div className="hero-names"><h1><strong><em>Abhinandh</em></strong></h1><span>♡</span><h1><strong><em>Athira</em></strong></h1></div>
-            <p className="hero-lede">Together with their families, they invite you to share in the joy of their wedding day.</p>
+            <p className="hero-lede">Together with our families, we invite you to celebrate the joy of our wedding day with us.</p>
             <div className="hero-actions"><button onClick={() => setInvitationOpen(true)}>Open the Invitation</button><button className="find-venue-button" onClick={() => window.open(MAP_URL, "_blank", "noopener,noreferrer")}>⌖ &nbsp; Find the Venue</button></div>
             <div className="hero-meta"><p>20 December 2026</p><p>Reception at 4:00 PM onwards</p><p>{VENUE}</p></div>
           </div>
