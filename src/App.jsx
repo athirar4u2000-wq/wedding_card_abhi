@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 
-const WEDDING_DATE = new Date("2026-12-20T10:00:00+05:30");
+const WEDDING_DATE = new Date("2026-12-20T16:00:00+05:30");
 const VENUE = "SHAMS Auditorium, Azhiyur, Kerala";
 const MAP_URL = "https://www.google.com/maps/search/?api=1&query=SHAMS+Auditorium+Azhiyur+Kerala";
 function useCountdown() {
