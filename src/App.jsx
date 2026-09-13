@@ -754,11 +754,11 @@ function App() {
         <h2>
           <strong>
             <em>Abhinandh</em>
-          </strong>
+          </strong>{" "}
 
           <i className="love-symbol">
             ♡
-          </i>
+          </i>{" "}
 
           <strong>
             <em>Athira</em>
@@ -810,7 +810,7 @@ function App() {
 
           <h2>
             <strong>
-              <em>Abhinandh</em>
+              <em>Abhinandh </em>
             </strong>{" "}
 
             <i className="love-symbol">

@@ -232,13 +232,9 @@
 /* Keep the invitation white regardless of the phone's dark or light theme preference. */
 body,
 .reference-site,
-.reference-hero,
 .reference-section,
-.reference-footer,
 .reference-section .section-intro,
 .reference-section h2,
-.hero-copy,
-.hero-meta,
 .couple-cards article,
 .schedule-card,
 .qr-card,
@@ -246,6 +242,13 @@ body,
 .invitation-modal {
   background: #ffffff !important;
   color: var(--ink);
+}
+
+.reference-hero,
+.hero-copy,
+.reference-footer {
+  background: var(--navy) !important;
+  color: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -322,6 +325,14 @@ body,
 
 @media (max-width:700px) {
   .couple-love { font-size:24px; }
+}
+
+.reference-footer h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 3vw, 20px);
+  flex-wrap: wrap;
 }
 
 .reference-footer h2 i {
@@ -416,6 +427,7 @@ body,
   --sage: #e4ece7;
   --gold: #d4af37;
   --line: #e4d2cc;
+  --navy: #0b1f3a;
 }
 
 body,
