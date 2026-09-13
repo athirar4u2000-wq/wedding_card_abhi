@@ -229,17 +229,36 @@
 .scroll-top:hover { transform:translateY(-4px); background:#fffaf0; }
 @media (max-width:700px) { .scroll-top { right:58px; bottom:18px; width:34px; height:34px; font-size:19px; } }
 
+/* Keep the invitation white regardless of the phone's dark or light theme preference. */
+body,
+.reference-site,
+.reference-hero,
+.reference-section,
+.reference-footer,
+.reference-section .section-intro,
+.reference-section h2,
+.hero-copy,
+.hero-meta,
+.couple-cards article,
+.schedule-card,
+.qr-card,
+.event-list>div.event-item,
+.invitation-modal {
+  background: #ffffff !important;
+  color: var(--ink);
+}
+
 @media (prefers-color-scheme: dark) {
-  .phone {
-    display: none !important;
+  :root {
+    color-scheme: light;
+  }
+  body,
+  .reference-site {
+    background: #ffffff !important;
+    color: var(--ink);
   }
 }
 
-@media (prefers-color-scheme: light) {
-  .phone {
-    display: inline-flex;
-  }
-}
 .countdown-row { max-width:920px; padding:0; gap:18px; border:0; border-radius:0; background:transparent; box-shadow:none; }
 .countdown-cell { flex:1; min-width:155px; min-height:150px; padding:30px 18px 24px; border-top:3px solid var(--gold); border-radius:22px; }
 .countdown-cell strong { font-size:52px; }
