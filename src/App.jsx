@@ -37,7 +37,7 @@ function App() {
   }, []);
 
   const share = async (network) => {
-    const text = `Abhinandh and Athira are getting married and having a reception on 20 December 2026 4:00 PM onwards at ${VENUE}. ${window.location.href}`;
+    const text = `Abhinandh and Athira are getting married and having a reception on 20 December 2026 4:00 PM onwards at ${VENUE}. Join us in celebrating their special day!`;
     const urls = {
       whatsapp: `https://wa.me/?text=${encodeURIComponent(text)}`,
       facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`,
